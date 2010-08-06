@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xsi:schemaLocation="http://wadl.dev.java.net/2009/02 wadl.xsd" 
+  xmlns="http://wadl.dev.java.net/2009/02"> 
+
+  <grammars> 
+    <response-codes>
+      <code name="200" value="OK: Success!" />
+      <code name="400" value="Bad Request: The request was invalid. An accompanying error message will explain why." />
+      <code name="403" value="Forbidden: The request is understood, but it has been refused. An accompanying error message will explain why." />
+      <code name="503" value="Service Unavailable: Something happened to the Truveo servers. Try again later." />
+    </response-codes>
+  </grammars>
+
+  <representation id="responseCodes" element="responseCodes"/>
+
+  <resources base="http://xml.truveo.com/apiv3"> 
+
+    <resource id="getVideos">
+
+      <param name="method" fixed="true" required="true" style="query" default="truveo.videos.getVideos"/>
+      <param name="appid" required="true" style="query" default=""/>
+
+      <param name="query" required="false" type="xsd:string" style="query" default=""/>
+      <param name="results" required="false" type="xsd:string" style="query" default="10"/>
+      <param name="start" required="false" type="xsd:string" style="query" default="0"/>
+      <param name="showRelatedItems" required="false" type="xsd:string" style="query" default="0"/>
+      <param name="tagResults" required="false" type="xsd:string" style="query" default="10"/>
+      <param name="channelResults" required="false" type="xsd:string" style="query" default="10"/>
+      <param name="categoryResults" required="false" type="xsd:string" style="query" default="10"/>
+      <param name="userResults" required="false" type="xsd:string" style="query" default="10"/>
+      <param name="showAdult" required="false" type="xsd:string" style="query" default="0"/>
+
+
+      <method name="GET" id="search">
+        <tags>
+          <tag primary="true">Search</tag>
+        </tags>
+
+        <authentication required="false"/>
+        <docs url="http://developer.truveo.com"/>
+        <example url="/search.{format}?q={q}"/>
+        <notes></notes>
+      </method>
+
+    </resource>
+
+  </resources>
+
+</application>
