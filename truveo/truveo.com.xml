@@ -17,7 +17,7 @@
 
   <resources base="http://xml.truveo.com/apiv3"> 
 
-    <resource id="getVideos">
+    <resource id="truveo.videos.getVideos">
 
       <param name="method" fixed="true" required="true" style="query" default="truveo.videos.getVideos"/>
       <param name="appid" required="true" style="query" default=""/>
@@ -33,15 +33,13 @@
       <param name="showAdult" required="false" type="xsd:string" style="query" default="0"/>
 
 
-      <method name="GET" id="search">
-        <tags>
-          <tag primary="true">Search</tag>
-        </tags>
-
+      <method name="GET" id="getVideos">
         <authentication required="false"/>
         <docs url="http://developer.truveo.com"/>
-        <example url="/search.{format}?q={q}"/>
+
+        <example url="http://xml.truveo.com/apiv3?method=truveo.videos.getVideos"/>
         <notes>These are notes.</notes>
+
       </method>
 
     </resource>
