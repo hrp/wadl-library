@@ -27,7 +27,7 @@
 					 	<property name="method">A string containing the name of the API method used to retrieve the response. In this case, this field would return the string 'truveo.videos.getVideos'.</property>
 					 	<property name="method">A string containing the name of the API method used to retrieve the response. In this case, this field would return the string 'truveo.videos.getVideos'.</property>
 					</response>
-					<example url="http://api.truveo.com/apiv3?appid={appid}&method={method}&amp;query={query}"/>
+					<example url="http://api.truveo.com/apiv3?appid={appid}&amp;method={method}&amp;query={query}"/>
 				</method>
 				
 				<param name="query" type="xsd:string" style="query" required="false" default=" ">
