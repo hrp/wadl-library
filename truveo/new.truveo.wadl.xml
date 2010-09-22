@@ -1,30 +1,71 @@
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://research.sun.com/wadl/2006/10                      https://wadl.dev.java.net/wadl20061109.xsd" xmlns="http://research.sun.com/wadl/2006/10">
-
-
-	<resources base="http://xml.truveo.com" supports_ssl="true">
+	<resources base="http://api.truveo.com" supports_ssl="false">
 		<authentication_schemes>
 			<scheme name="appid" style="query">Application ID</scheme>
 			<scheme name="token" style="query">User Token</scheme>
 		</authentication_schemes>
 		<resource path="/{version}">
-			<param name="version" style="template" type="xsd:int"/>
-			<resource path="/methodJSON.php">
-				<param name="query" type="xsd:string" style="query" required="false" default="Jennifer+Lopez">
-					<doc>String value. Optional. Default value of ' '. The query string that will be submitted to the Truveo video search engine. This string contains your search terms and can also include Boolean operators, modifiers, filters and sorters. For a complete listing of the supported functionality, see the documentation on search query syntax. If no query string or a blank query string is provided, this method will return the top videos ordered by vrank.</doc>
-				</param>
+			<param name="version" style="template" type="xsd:string" default="apiv3"/>
+
 				<method name="GET" display_name="truveo.videos.getVideos" id="getVideos">
 					<tags>
-						<tag primary="true">Search</tag>
+						<tag primary="true">Video Methods</tag>
 					</tags>
 					<request>
 						<param name="method" required="true" style="query" fixed="truveo.videos.getVideos"/>
 					</request>
-					<authentication required="false"/>
-					<doc url="http://developer.truveo.com/methodJSON.php?name=truveo.videos.getVideos">This method can be used to submit a query to the Truveo video search service. This method returns the set of video results that match the submitted query.</doc>
-					<response></response>
-					<example url="http://developer.truveo.com/methodJSON.php?method={method}&amp;query={query}"/>
+					<authentication required="true"/>
+					<doc url="http://developer.truveo.com/method.php?name=truveo.videos.getVideos">This method can be used to submit a query to the Truveo video search service. This method returns the set of video results that match the submitted query.</doc>
+					<response>
+					 	<property name="method">A string containing the name of the API method used to retrieve the response. In this case, this field would return the string 'truveo.videos.getVideos'.</property>
+					 	<property name="query">A string containing the original submitted query associated with this response.</property>
+					 	<property name="querySuggestion">A string containing a suggested query, if available, for the original submitted query associated with this response.</property>
+					 	<property name="videoSet">The container for all of the video records in the set of returned videos.</property>
+					 	<property name="totalResultsAvailable">An integer representing the total number of videos in the entire set of matching videos.</property>
+					 	<property name="totalResultsReturned">An integer representing the total number of videos returned in this VideoSet.</property>
+					 	<property name="firstResultPosition">An integer representing the position of the first Video in the entire set of matching videos.</property>
+					 	<property name="method">A string containing the name of the API method used to retrieve the response. In this case, this field would return the string 'truveo.videos.getVideos'.</property>
+					 	<property name="method">A string containing the name of the API method used to retrieve the response. In this case, this field would return the string 'truveo.videos.getVideos'.</property>
+					</response>
+					<example url="http://api.truveo.com/apiv3?appid={appid}&method={method}&amp;query={query}"/>
 				</method>
+				
+				<param name="query" type="xsd:string" style="query" required="false" default=" ">
+					<doc>String value. Optional. Default value of ' '. The query string that will be submitted to the Truveo video search engine. This string contains your search terms and can also include Boolean operators, modifiers, filters and sorters. For a complete listing of the supported functionality, see the documentation on search query syntax. If no query string or a blank query string is provided, this method will return the top videos ordered by vrank.</doc>
+				</param>
+				
+				<param name="results" type="xsd:integer" style="query" required="false" default="10">
+					<doc>The number of results the search engine should attempt to return in response to your request.</doc>
+				</param>
+				
+				<param name="start" type="xsd:integer" style="query" required="false" default="0">
+					<doc>The starting position of the first result, out of the entire set of matching results, that should be returned in response to your request. Can be any integer between 0 and 1000.</doc>
+				</param>
+				
+				<param name="showRelatedItems" type="xsd:integer" style="query" required="false" default="0">
+					<doc>The flag which indicates if related tags, channels, categories and users should be included in the results returned in response to your request. A value of 1 indicates that these items should be included, and a value of 0 indicates that they should not.</doc>
+				</param>
+				
+				<param name="tagResults" type="xsd:integer" style="query" required="false" default="10">
+					<doc>The number of related tags the search engine should attempt to return in response to your request. This parameter is only relevant if 'showRelatedItems' is set to 1.</doc>
+				</param>
+				
+				<param name="channelResults" type="xsd:integer" style="query" required="false" default="10">
+					<doc>The number of related channels the search engine should attempt to return in response to your request. This parameter is only relevant if 'showRelatedItems' is set to 1.</doc>
+				</param>
+				
+				<param name="categoryResults" type="xsd:integer" style="query" required="false" default="10">
+					<doc>The number of related categories the search engine should attempt to return in response to your request. This parameter is only relevant if 'showRelatedItems' is set to 1.</doc>
+				</param>
+				
+				<param name="userResults" type="xsd:integer" style="query" required="false" default="10">
+					<doc>The number of related users the search engine should attempt to return in response to your request. This parameter is only relevant if 'showRelatedItems' is set to 1.</doc>
+				</param>
+				
+				<param name="showAdult" type="xsd:integer" style="query" required="false" default="0">
+					<doc>The flag which indicates if adult content should be included or excluded in the results returned in response to your request. A value of 1 indicates that adult content should be included, and a value of 0 indicates that adult content should be excluded.</doc>
+				</param>
+				
 			</resource>
-		</resource>
 	</resources>
 </application>
